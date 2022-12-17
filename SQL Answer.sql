@@ -357,23 +357,97 @@ order by
 
 
 --Aggregation and grouping / Ex 8:
---Because 21st century starts from 2001 so we need to – 1. 
 select
-	concat(1 + (year(EventDate) - 1) / 100,  
-		case when right(1 + (year(EventDate) - 1) / 100, 1) = 1 
+	concat(1 + year(EventDate) / 100,  
+		case when right(1 + year(EventDate) / 100, 1) = 1 
 			 then 'st'
-			 when right(1 + (year(EventDate) - 1) / 100, 1) = 2
+			 when right(1 + year(EventDate) / 100, 1) = 2
 			 then ' nd'
-			 when right(1 + (year(EventDate) - 1) / 100, 1) = 3 
+			 when right(1 + year(EventDate) / 100, 1) = 3 
 			 then ' rd'
 			 else 'th'
 			 end,
 		' century')
 	as century,
-	count(distinct EventID) as [Number of events]
+	count(distinct EventID) as Number_of_events
 from
 	tblEvent te
 group by
-	1 + (year(EventDate) - 1) / 100;
+	1 + year(EventDate) / 100;
+	
+	
+
+--Calculations using dates / Ex 1:
+select
+	EventDate,
+	format(EventDate, 'dd/MM/yyyy') as formattedDate
+from
+	tblEvent te
+where 
+year(EventDate) = 1995;
+
+--Calculations using dates / Ex 2:
+select
+	EventDate ,
+	cast('09/26/1995' as date) as DOB, --or use datefromparts
+	abs(datediff(day, EventDate, cast('09/26/1995' as date))) as daydiff
+from
+	tblEvent te
+order by
+	abs(datediff(day, EventDate, cast('09/26/1995' as date))) asc;
+
+
+--Calculations using dates / Ex 3:
+select
+	EventName,
+	EventDate,
+	datename(weekday, EventDate) as Day_of_week,
+	datepart(day, EventDate) as Day_number
+from
+	tblEvent te
+where 
+	datename(weekday, EventDate) = 'Friday' 
+	and datepart(day, EventDate) = 13;
+
+select
+	EventName,
+	EventDate,
+	datename(weekday, EventDate) as Day_of_week,
+	datepart(day, EventDate) as Day_number
+from
+	tblEvent te
+where 
+	datename(weekday, EventDate) = 'Thursday' 
+	and datepart(day, EventDate) = 12;
+	
+select
+	EventName,
+	EventDate,
+	datename(weekday, EventDate) as Day_of_week,
+	datepart(day, EventDate) as Day_number
+from
+	tblEvent te
+where 
+	datename(weekday, EventDate) = 'Saturday' 
+	and datepart(day, EventDate) = 14;
+
+--Calculations using dates / Ex 4:
+select
+	EventName as Event_Name,
+	concat(datename(weekday, EventDate), ' ', 
+	case 
+        when datepart(day, EventDate) in (1, 21, 31) 
+       		then convert(varchar, datepart(day, EventDate))+ 'st'
+       	when datepart(day, EventDate) in (2, 22) 
+       		then convert(varchar, datepart(day, EventDate))+ 'nd'
+       	when datepart(day, EventDate) in (3, 23) 
+	        then convert(varchar, datepart(day, EventDate))+ 'rd'
+        else convert(varchar, datepart(day, EventDate)) + 'th'
+        end , ' ' 
+        , datename(month, EventDate) , ' ' 
+        , year(EventDate)) as Full_Date
+from
+	tblEvent te
+
 
 
