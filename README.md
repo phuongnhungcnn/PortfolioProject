@@ -6,6 +6,7 @@ Ex 1:
 Create a query to list out the following columns from the tblEvent table, with the most recent first (for which you'll need to use an ORDER BY clause):
 
 ●	The event name
+
 ●	The event date
 
 
@@ -14,7 +15,9 @@ Write a query to show the first 5 events (in date order) from the tblEvent table
 There are a few things to notice about this:
 
 ●	You should give the columns aliases (What and Details in this case);
+
 ●	Use SELECT TOP 5 to limit the results to 5 rows;
+
 ●	Even though you're sorting by the event date, it doesn't have to be included in your results.
 
 Ex 3: 
@@ -39,14 +42,19 @@ This should return 11 rows.  Now add a criterion to show only those events which
 Ex 3:
 Create a query which lists out all of the tblEvent events which include the word Teletubbies:
 Now add an OR condition to your query so that it lists out all events whose:
+
 ●	Name includes Teletubbies; or
+
 ●	Name includes Pandy.
 
 
 Ex 4: 
 First show a list of all events which might have something to do with water.  The interpretation of this is that one or more of the following is true:
+
 ●	They take place in one of the island countries (8, 22, 30 and 35, corresponding to Japan, the Marshall Islands, Cuba and Sri Lanka respectively)
+
 ●	Their EventDetails column contains the word Water (not the text Water, but the word)
+
 ●	Their category is number 4 (Natural World)
 
 Ex 5:
@@ -105,8 +113,11 @@ The ABS function returns the absolute value of a number (for example, ABS(42) an
 Ex 3:
 Create a query to show the day of the week and also the day number on which each event occurred.
 Use this to show:
+
 ●	That mercifully there weren't any events on Friday the 13th;
+
 ●	That there was one event on Thursday 12th (the day before); and
+
 ●	That there were two events on Saturday the 14th (the day after).
 
 Ex 4: 
@@ -137,11 +148,17 @@ From tblCountry and tblEvent, create a query to get a list of EventName happened
 
 Ex 4:
 Create a query to link together the following 3 tables:
+
 ●	tblContinent
+
 ●	tblCountry
+
 ●	tblEvent
+
 Your query should list out those events which took place in either:
+
 ●	the continent called Antarctic; or
+
 ●	the country called Russia.
 
 Ex 5:
@@ -156,27 +173,39 @@ Write a query using inner joins to show all of the authors who have written epis
 
 
 Ex 7:
-●	9
+Create a query to list out the appearances of enemies in episodes which have length under 40 characters, where the length is defined as the sum of:
+
+● the number of characters in the author's name;
+
+● the number of characters in the episode's title;
+
+● the number of characters in the doctor's name; and
+
+● the number of characters in the enemy's name.
 
 Ex 8:
 Create a query using an outer join to list out those countries which have no corresponding events.
 
+
+
 VI.	Aggregation and grouping
 
 Ex 1:
-The following diagram shows how the authors and episodes tables are related
+Show for each author:
 
- 
-
-Use this to show for each author:
 ●	the number of episodes they wrote;
+
 ●	their earliest episode date; and
+
 ●	their latest episode date.
+
 Sort these so that the most prolific authors come first.
 
 Ex 2: 
 Create a query which:
+
 ●	groups by the category name from the category table; and
+
 ●	counts the number of events for each.
 
 Ex 3: 
@@ -194,7 +223,9 @@ The tables you'll need for this exercise are as follows. Write a query to list o
 
 Ex 6:
 Write a query to list out for each episode year and enemy the number of episodes made, but in addition:
+
 ●	Only show episodes made by doctors born before 1970; and
+
 ●	Omit rows where an enemy appeared in only one episode in a particular year.
 
 Ex 7:
@@ -228,5 +259,7 @@ Write a query which lists out countries which have more than 8 events, using a c
 
 Ex 5:
 Create a subquery to list out all of those events whose:
+
 ●	Country id is not in the list of the last 30 country ids in alphabetical order; and
+
 ●	Category id is not in the list of the last 15 category ids in alphabetical order.
